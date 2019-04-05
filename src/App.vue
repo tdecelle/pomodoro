@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <timer-display/>
+    <timer-buttons/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TimerButtons from './components/TimerButtons.vue'
+import TimerDisplay from './components/TimerDisplay.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    TimerButtons,
+    TimerDisplay,
+  },
+  methods: {
+    isPlaying() {
+      return (this.$store.state.timerState != this.$store.state.EnumState.NOT_PLAYING);
+    },
   }
 }
 </script>
@@ -23,6 +30,19 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body {
+  position: relative;
+  background: url('./assets/intro-1600.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 </style>
