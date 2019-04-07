@@ -62,7 +62,7 @@ export default new Vuex.Store({
     changePomodoro: state => {
       if (state.pomodoroState == state.EnumPomodoroState.SHORT_BREAK || state.pomodoroState == state.EnumPomodoroState.LONG_Break)
         state.pomodoroState = state.EnumPomodoroState.WORK;
-      else if (state.pomodoroState == state.EnumPomodoroState.WORK && state.workTicks < 4)
+      else if (state.pomodoroState == state.EnumPomodoroState.WORK && state.workTicks % 4 != 0)
         state.pomodoroState = state.EnumPomodoroState.SHORT_BREAK
       else
         state.pomodoroState = state.EnumPomodoroState.LONG_Break

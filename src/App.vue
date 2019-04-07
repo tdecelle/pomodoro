@@ -19,7 +19,7 @@ export default {
     isPlaying() {
       return (this.$store.state.timerState != this.$store.state.EnumState.NOT_PLAYING);
     },
-  }
+  },
 }
 </script>
 

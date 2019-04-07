@@ -16,6 +16,13 @@ export default{
     components: {
         Button
     },
+    mounted() {
+        document.addEventListener('keyup', function(event) {
+            //TODO: get it to recognize the event
+            if (event == 32) 
+                alert("COOL");
+        });
+    },
     methods: {
         isNotPlaying() {
             return this.$store.state.timerState === this.$store.state.EnumState.NOT_PLAYING;
