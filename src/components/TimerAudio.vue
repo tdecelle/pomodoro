@@ -10,16 +10,19 @@
     export default {
         methods: {
             play() {
-                console.log(typeof(this.$data.audio));
                 this.$data.audio.play();
+                this.$data.audio2.currentTime = 5;
+                this.$data.audio2.play();
             },
             pause() {
                 this.$data.audio.pause();
+                <!-- this.$data.audio2.pause(); -->
             },
         },
         data() {
             return {
                 audio: new Audio(require('../assets/rain-03.mp3')),
+                audio2: new Audio(require('../assets/rain-03.mp3')),
             }
         }
     }

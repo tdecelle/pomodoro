@@ -22,6 +22,7 @@ export default new Vuex.Store({
     time: null,
     interval: null,
     audio: new Audio(require('./assets/rain-03.mp3')),
+    audio2: new Audio(require('./assets/rain-03.mp3')),
   },
   mutations: {
     play: state => {
@@ -45,13 +46,16 @@ export default new Vuex.Store({
       state.timerState = state.EnumState.PAUSED;
       clearInterval(state.interval);
       state.audio.pause();
+      state.audio2.pause();
     },
     end: state => {
       state.timerState = state.EnumState.NOT_PLAYING;
       state.time = null;
       clearInterval(state.interval);
       state.audio.pause();
+      state.audio2.pause();
       state.audio.currentTime = 0;
+      state.audio2.currentTime = 5;
     },
     setInterval: (state, interval) => {
       state.interval = interval;
@@ -83,14 +87,25 @@ export default new Vuex.Store({
       }, 1000);
 
       if (context.state.pomodoroState == context.state.EnumPomodoroState.WORK) {
-      context.state.audio.addEventListener('timeupdate', function() {
+        context.state.audio.addEventListener('timeupdate', function() {
           var buffer = 2;
           if(this.currentTime > this.duration - buffer){
               this.currentTime = .5;
               this.play();
-          }}, false);
-        
+          }
+        }, false);
+
+        context.state.audio2.addEventListener('timeupdate', function() {
+          var buffer = 2;
+          if(this.currentTime > this.duration - buffer) {
+              this.currentTime = .5;
+              this.play();
+          }
+        }, false);
+
         context.state.audio.play();
+        context.state.audio2.currentTime = 5;
+        context.state.audio2.play();
       }
 
       context.commit('setInterval', interval);
